@@ -1,42 +1,44 @@
 # Frontend React-js Dev Test 
 
-## Available Scripts
+## Scripts yang digunakan
 
-In the project directory, you can run:
+Ketika didalam project directori, dapat memanggil command line dibawah:
 
 ### `npm install`
 
-After cloning the repository.\
-You need to run npm install.
+Jalankan command line npm install diatas ketika project baru di clone dari github repository\.
+
 
 ### `npm start`
 
-After finished npm install.\
-You can run the file with the command line above.
+Setelah selesai menjalankan perintah npm install.\
+untuk menjalankan project secara lokal dapat menggunakan command line npm start diatas .
 
-## Project Description
-
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Deskripsi dari project
 
 
-### Code Splitting
+### `Fitur yang tersedia`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Note: Ketika sudah masuk dihalaman utama!**
+
+`Melihat Daftar Movie` yang tersedia ketika project dijalankan. 
+
+`Melakukan Pencarian Movie` dengan memasukkan keyword di field input.
+
+`Melihat Gambar Movie` dengan mengklik gambar dari movie.
+
+`Melihat Detail Movie` dengan mengklik tombil Lihat Detail yang ada di card movie.
 
 
-### `yarn build` fails to minify
+## Struktur Project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Struktur Project dibuat dengan memisahkan komponen, container(UI), dan logic menjadi beberapa folder.\
+
+`components` folder yang berisi komponen dari UI yang sudah di custom.\
+
+`constant` folder yang berisi komponen dari file yang berisi dari nilai yang konstant agar mudah dipanggil berulang dan mudah dalam maintenance. 
+
+`container` folder container berisikan file-file logic UI yang berupa komponen-komponen dari folder `components` yang dipanggil sesuai dengan kebutuhan dan disini juga menjalankan logic untuk mendapatkan data dari API. 
+
+`redux` folder ini berisikan redux dari tiap logical UI, dan menyimpan store. didalam folder `movie` terbagi menjadi beberapa file seperti actions, fetcher, reducer, types yang digunakan untuk menjalankan state management dengan redux dan lebih mudah dalam maintenance.
+ 
