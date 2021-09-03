@@ -1,4 +1,4 @@
-import { Button, Image } from "antd";
+import { Button, Image, Spin } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
@@ -18,7 +18,7 @@ const MovieDetail = () => {
     dispatch(fetchMovie(id));
   }, [dispatch, id]);
 
-  const { movie } = useSelector((state) => state.movie);
+  const { movie, loading } = useSelector((state) => state.movie);
 
   const history = useHistory();
   const onClickButton = () => {
@@ -30,18 +30,24 @@ const MovieDetail = () => {
       <ContainerWrapper>
         <Header />
         <MovieDetailContainerWrapper>
-          <Image width={400} height={400} src={movie.Poster} />
-          <h1>{movie.Title}</h1>
-          <h3>{movie.Genre}</h3>
-          <p>{movie.Plot}</p>
-          <h4>Director : {movie.Director}</h4>
-          <h4>Year : {movie.Year}</h4>
-          <h4>Released : {movie.Released}</h4>
-          <h4>Actors: {movie.Actors}</h4>
-          <h4>imdbRating : {movie.imdbRating}</h4>
-          <Button type="primary" size="large" onClick={onClickButton}>
-            Back to All Movies
-          </Button>
+          {loading ? (
+            <Spin size="large" />
+          ) : (
+            <>
+              <Image width={400} height={400} src={movie.Poster} />
+              <h1>{movie.Title}</h1>
+              <h3>{movie.Genre}</h3>
+              <p>{movie.Plot}</p>
+              <h4>Director : {movie.Director}</h4>
+              <h4>Year : {movie.Year}</h4>
+              <h4>Released : {movie.Released}</h4>
+              <h4>Actors: {movie.Actors}</h4>
+              <h4>imdbRating : {movie.imdbRating}</h4>
+              <Button type="primary" size="large" onClick={onClickButton}>
+                Back to All Movies
+              </Button>
+            </>
+          )}
         </MovieDetailContainerWrapper>
         <Footer />
       </ContainerWrapper>

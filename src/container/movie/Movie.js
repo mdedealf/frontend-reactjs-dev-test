@@ -8,7 +8,7 @@ import {
   ModalImageWrapper,
   MovieListContainerWrapper,
 } from "../../components/Wrapper/styled";
-import { Button, Empty, Input, Modal } from "antd";
+import { Button, Empty, Input, Modal, Spin } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "../../redux/movie/fetcher";
@@ -107,6 +107,8 @@ const Movie = () => {
           <MovieListContainerWrapper>
             {movieData.movies.Response === "False" ? (
               <Empty />
+            ) : movieData.loading ? (
+              <Spin size="large" />
             ) : (
               movieData.movies.Search?.map((data) => (
                 <MovieCard

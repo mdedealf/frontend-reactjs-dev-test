@@ -1,9 +1,16 @@
-import { SEARCH_MOVIES, FETCH_MOVIES, FETCH_MOVIE } from "./types";
+import {
+  SEARCH_MOVIES,
+  FETCH_MOVIES,
+  FETCH_MOVIE,
+  START_LOADING,
+  STOP_LOADING,
+} from "./types";
 
 const initialState = {
   text: "",
   movies: [],
   movie: [],
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +31,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         movie: action.payload,
+      };
+    }
+    case START_LOADING: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case STOP_LOADING: {
+      return {
+        ...state,
+        loading: false,
       };
     }
     default:

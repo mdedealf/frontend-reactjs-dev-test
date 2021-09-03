@@ -1,13 +1,16 @@
 import axios from "axios";
 import { API_KEY } from "../../constants/api";
-import { FETCH_MOVIE, FETCH_MOVIES, SEARCH_MOVIES } from "./types";
+import {
+  fetchAllMovies,
+  fetchTheMovie,
+  searchAllMovies,
+  startLoading,
+  stopLoading,
+} from "./actions";
 
 export const searchMovies = (text) => (dispatch) => {
   try {
-    dispatch({
-      type: SEARCH_MOVIES,
-      payload: text,
-    });
+    dispatch(searchAllMovies(text));
   } catch (error) {
     console.log(error);
   }
@@ -15,13 +18,12 @@ export const searchMovies = (text) => (dispatch) => {
 
 export const fetchMovies = (text) => (dispatch) => {
   try {
+    dispatch(startLoading());
     axios
       .get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${text}`)
       .then((response) => {
-        dispatch({
-          type: FETCH_MOVIES,
-          payload: response.data,
-        });
+        dispatch(stopLoading());
+        dispatch(fetchAllMovies(response.data));
       });
   } catch (error) {
     console.log(error);
@@ -30,13 +32,12 @@ export const fetchMovies = (text) => (dispatch) => {
 
 export const fetchMovie = (id) => (dispatch) => {
   try {
+    dispatch(startLoading());
     axios
       .get(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
       .then((response) => {
-        dispatch({
-          type: FETCH_MOVIE,
-          payload: response.data,
-        });
+        dispatch(stopLoading());
+        dispatch(fetchTheMovie(response.data));
       });
   } catch (error) {
     console.log(error);
